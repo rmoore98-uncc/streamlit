@@ -17,7 +17,7 @@ st.write("### Input Data and Examples")
 
 
 # This bar chart will not have solid bars--but lines--because the detail data is being graphed independently
-st.bar_chart(df, x="Category", y="Sales")
+st.bar_chart(filtered_df, x="Category", y="Sales")
 
 # Now let's do the same graph where we do the aggregation first in Pandas... (this results in a chart with solid bars)
 st.dataframe(filtered_df.groupby("Category").sum())
