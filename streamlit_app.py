@@ -9,6 +9,18 @@ option = st.selectbox(
     "Select a Category",
     df["Category"].unique()
 )
+filtered_df = df[df["Category"] == option]
+
+# Multi-select for Sub_Category within selected Category
+sub_options = filtered_df["Sub_Category"].unique()
+selected_subs = st.multiselect("Select Sub-Categories", sub_options)
+
+# Filter by selected Sub_Categories
+if selected_subs:
+    filtered_df = filtered_df[filtered_df["Sub_Category"].isin(selected_subs)]
+
+# Display the filtered data
+st.dataframe(filtered_df)
 
 filtered_df = df[df["Category"] == option]
 st.dataframe(filtered_df)
