@@ -4,10 +4,15 @@ import matplotlib.pyplot as plt
 import math
 
 st.title("Data App Assignment, on July 14th")
-
-st.write("### Input Data and Examples")
 df = pd.read_csv("Superstore_Sales_utf8.csv", parse_dates=True)
 st.dataframe(df)
+
+option = st.selectbox(
+    "Select a Category",
+    [df.category],
+)
+st.write("### Input Data and Examples")
+
 
 # This bar chart will not have solid bars--but lines--because the detail data is being graphed independently
 st.bar_chart(df, x="Category", y="Sales")
