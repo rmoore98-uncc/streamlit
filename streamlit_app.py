@@ -23,7 +23,7 @@ if selected_subs:
 st.dataframe(filtered_df)
 
 filtered_df = df[df["Category"] == option]
-st.dataframe(filtered_df)
+
 st.write("### Input Data and Examples")
 
 
