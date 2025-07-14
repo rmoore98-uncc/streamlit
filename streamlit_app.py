@@ -9,7 +9,7 @@ st.dataframe(df)
 
 option = st.selectbox(
     "Select a Category",
-    [df.category],
+    [df.Category],
 )
 st.write("### Input Data and Examples")
 
