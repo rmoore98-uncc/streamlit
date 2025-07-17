@@ -66,8 +66,19 @@ sales_by_sub_month = (
     .unstack('Sub_Category')
 )
 
-# Show the line chart: each Sub-Category will have its own line
+# Sub-category Line Chart Display
 st.line_chart(sales_by_sub_month)
+
+# Create st.metrics
+
+total_sales = filtered_df['Sales'].sum()
+total_profit = filtered_df['Profit'].sum()
+overall_profit_margin = {total_profit / total_sales) * 100 if total_sales != 0 else 0
+
+# Metric Display
+st.metric(label="Total Sales", value=f"${total_sales:,.2f}")
+st.metric(label="Total Profit", value=f"${total_profit:,.2f}")
+st.metric(label="Profit Margin (%)", value=f"{overall_profit_margin:.2f}%")
 
 st.write("## Your additions")
 st.write("### (1) add a drop down for Category (https://docs.streamlit.io/library/api-reference/widgets/st.selectbox)")
