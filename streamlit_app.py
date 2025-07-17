@@ -73,7 +73,7 @@ st.line_chart(sales_by_sub_month)
 
 total_sales = filtered_df['Sales'].sum()
 total_profit = filtered_df['Profit'].sum()
-overall_profit_margin = {total_profit / total_sales) * 100 if total_sales != 0 else 0
+overall_profit_margin = (total_profit / total_sales) * 100 if total_sales != 0 else 0
 
 # Metric Display
 st.metric(label="Total Sales", value=f"${total_sales:,.2f}")
