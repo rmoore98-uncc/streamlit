@@ -47,6 +47,28 @@ st.dataframe(sales_by_month)
 # Here the grouped months are the index and automatically used for the x axis
 st.line_chart(sales_by_month, y="Sales")
 
+# Filter by Category
+filtered_df = df[df["Category"] == option]
+
+# Optionally filter by selected Sub-Categories
+if selected_subs:
+    filtered_df = filtered_df[filtered_df["Sub_Category"].isin(selected_subs)]
+
+# Convert Order_Date to datetime and set as index
+filtered_df["Order_Date"] = pd.to_datetime(filtered_df["Order_Date"])
+filtered_df.set_index('Order_Date', inplace=True)
+
+# Group by Sub-Category and Month, sum Sales
+sales_by_sub_month = (
+    filtered_df
+    .groupby([pd.Grouper(freq='M'), 'Sub_Category'])['Sales']
+    .sum()
+    .unstack('Sub_Category')
+)
+
+# Show the line chart: each Sub-Category will have its own line
+st.line_chart(sales_by_sub_month)
+
 st.write("## Your additions")
 st.write("### (1) add a drop down for Category (https://docs.streamlit.io/library/api-reference/widgets/st.selectbox)")
 st.write("### (2) add a multi-select for Sub_Category *in the selected Category (1)* (https://docs.streamlit.io/library/api-reference/widgets/st.multiselect)")
