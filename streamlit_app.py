@@ -75,6 +75,16 @@ total_sales = filtered_df['Sales'].sum()
 total_profit = filtered_df['Profit'].sum()
 overall_profit_margin = (total_profit / total_sales) * 100 if total_sales != 0 else 0
 
+# Calculate overall average profit margin (for all data)
+overall_avg_profit_margin = (df['Profit'].sum() / df['Sales'].sum()) * 100 if df['Sales'].sum() != 0 else 0
+delta_margin = overall_profit_margin - overall_avg_profit_margin
+
+st.metric(
+    label="Profit Margin (%)",
+    value=f"{overall_profit_margin:.2f}%",
+    delta=f"{delta_margin:.2f}%"
+)
+
 # Metric Display
 st.metric(label="Total Sales", value=f"${total_sales:,.2f}")
 st.metric(label="Total Profit", value=f"${total_profit:,.2f}")
