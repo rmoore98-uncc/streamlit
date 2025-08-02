@@ -30,7 +30,6 @@ st.write("### Input Data and Examples")
 # This bar chart will not have solid bars--but lines--because the detail data is being graphed independently
 st.bar_chart(filtered_df, x="Category", y="Sales")
 
-# Now let's do the same graph where we do the aggregation first in Pandas... (this results in a chart with solid bars)
 st.dataframe(filtered_df.groupby("Category").sum())
 # Using as_index=False here preserves the Category as a column.  If we exclude that, Category would become the datafram index and we would need to use x=None to tell bar_chart to use the index
 st.bar_chart(filtered_df.groupby("Category", as_index=False).sum(), x="Category", y="Sales", color="#04f")
@@ -43,9 +42,6 @@ filtered_df.set_index('Order_Date', inplace=True)
 sales_by_month = filtered_df.filter(items=['Sales']).groupby(pd.Grouper(freq='M')).sum()
 
 st.dataframe(sales_by_month)
-
-# Here the grouped months are the index and automatically used for the x axis
-st.line_chart(sales_by_month, y="Sales")
 
 # Filter by Category
 filtered_df = df[df["Category"] == option]
